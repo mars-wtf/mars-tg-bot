@@ -33,18 +33,18 @@ _bot.use(stages.middleware());
  */
 _bot.command("start", async (ctx: Context) => {
     console.log(ctx.chat.id)
-    const message = `Welcome to the KOM trading Bot! Do you have an existing wallet or create new one?`;
+    const message = `Welcome to mars bot. Your chat id is ${ctx.chat.id}`;
 
     // Create a buttons for creating and exporting wallets
-    const uploadLogoButton = createCallBackBtn("Upload Logo", "upload-logo");
-    // const importWalletButton = createCallBackBtn("Import Existing Wallet", "import-wallet");
+    // const uploadLogoButton = createCallBackBtn("Upload Logo", "upload-logo");
+    // // const importWalletButton = createCallBackBtn("Import Existing Wallet", "import-wallet");
 
-    // Send message with the import wallet button
-    ctx.reply(message, {
-        reply_markup: {
-            inline_keyboard: [[uploadLogoButton]],
-        },
-    });
+    // // Send message with the import wallet button
+    // ctx.reply(message, {
+    //     reply_markup: {
+    //         inline_keyboard: [[uploadLogoButton]],
+    //     },
+    // });
 });
 
 // Handle create wallet button click
@@ -82,17 +82,15 @@ const sendAds = (amount: number, num: number, link: string, index: number) => {
     });
 }
 
-app.post("/new_buy", async (req: Request, res: Response) => {
-    const { link, amount, index, num } = req.body;
-    if (link && amount && index && num) {
-        sendAds (amount, num, link, index);
-        res.json("success")
-    } else {
-        res.json("invalid")
-    }
-})
-
-
+// app.post("/new_buy", async (req: Request, res: Response) => {
+//     const { link, amount, index, num } = req.body;
+//     if (link && amount && index && num) {
+//         sendAds (amount, num, link, index);
+//         res.json("success")
+//     } else {
+//         res.json("invalid")
+//     }
+// })
 
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
