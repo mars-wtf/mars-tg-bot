@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const telegraf_1 = require("telegraf");
-const utils_1 = require("./bot/utils");
 const scenes_1 = require("./bot/scenes");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
@@ -39,16 +38,16 @@ _bot.use(stages.middleware());
  */
 _bot.command("start", (ctx) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(ctx.chat.id);
-    const message = `Welcome to the KOM trading Bot! Do you have an existing wallet or create new one?`;
+    const message = `Welcome to mars bot. Your chat id is ${ctx.chat.id}`;
     // Create a buttons for creating and exporting wallets
-    const uploadLogoButton = (0, utils_1.createCallBackBtn)("Upload Logo", "upload-logo");
-    // const importWalletButton = createCallBackBtn("Import Existing Wallet", "import-wallet");
-    // Send message with the import wallet button
-    ctx.reply(message, {
-        reply_markup: {
-            inline_keyboard: [[uploadLogoButton]],
-        },
-    });
+    // const uploadLogoButton = createCallBackBtn("Upload Logo", "upload-logo");
+    // // const importWalletButton = createCallBackBtn("Import Existing Wallet", "import-wallet");
+    // // Send message with the import wallet button
+    // ctx.reply(message, {
+    //     reply_markup: {
+    //         inline_keyboard: [[uploadLogoButton]],
+    //     },
+    // });
 }));
 // Handle create wallet button click
 _bot.action('upload-logo', (ctx) => __awaiter(void 0, void 0, void 0, function* () {
@@ -80,16 +79,15 @@ const sendAds = (amount, num, link, index) => {
         parse_mode: "HTML",
     });
 };
-app.post("/new_buy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { link, amount, index, num } = req.body;
-    if (link && amount && index && num) {
-        sendAds(amount, num, link, index);
-        res.json("success");
-    }
-    else {
-        res.json("invalid");
-    }
-}));
+// app.post("/new_buy", async (req: Request, res: Response) => {
+//     const { link, amount, index, num } = req.body;
+//     if (link && amount && index && num) {
+//         sendAds (amount, num, link, index);
+//         res.json("success")
+//     } else {
+//         res.json("invalid")
+//     }
+// })
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
     _bot.launch();
