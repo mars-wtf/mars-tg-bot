@@ -74,20 +74,21 @@ const sendAds = (amount, num, link, index) => {
         `\n🏆 ${amount} mars 🏆` +
         `\n\n${jwels}` +
         `\n\n 🛒 <a href="${link}"><b>See Transaction</b></a>`;
-    _bot.telegram[type](-4200050790, logo, {
+    _bot.telegram[type](-4192465370, logo, {
         caption: msg,
         parse_mode: "HTML",
     });
 };
-// app.post("/new_buy", async (req: Request, res: Response) => {
-//     const { link, amount, index, num } = req.body;
-//     if (link && amount && index && num) {
-//         sendAds (amount, num, link, index);
-//         res.json("success")
-//     } else {
-//         res.json("invalid")
-//     }
-// })
+app.post("/new_buy", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { link, amount, index, num } = req.body;
+    if (link && amount && index && num) {
+        sendAds(amount, num, link, index);
+        res.json("success");
+    }
+    else {
+        res.json("invalid");
+    }
+}));
 app.listen(port, () => {
     console.log(`Server is listening on ${port}`);
     _bot.launch();
