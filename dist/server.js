@@ -74,7 +74,7 @@ const sendAds = (amount, num, link, index) => {
         `\n🏆 ${amount} mars 🏆` +
         `\n\n${jwels}` +
         `\n\n 🛒 <a href="${link}"><b>See Transaction</b></a>`;
-    _bot.telegram[type](-4192465370, logo, {
+    _bot.telegram[type](-1002114550040, logo, {
         caption: msg,
         parse_mode: "HTML",
     });
